@@ -1,14 +1,10 @@
 {
-  "name": "AI-Powered Search",
-  "dockerComposeFile": "../docker-compose.yml",
+  "name": "AI-Powered Search (Default)",
+  "dockerComposeFile": "../../docker-compose.yml",
   "service": "notebooks",
   "runServices": [
     "notebooks",
     "solr",
-    "opensearch",
-    "opensearch-dashboards",
-    "weaviate",
-    "vespa",
     "zookeeper"
   ],
   "shutdownAction": "stopCompose",
@@ -21,13 +17,6 @@
     8888,
     2345,
     8983,
-    9200,
-    9600,
-    5601,
-    8090,
-    50051,
-    8080,
-    19071,
     2181
   ],
   "portsAttributes": {
@@ -40,18 +29,6 @@
     },
     "8983": {
       "label": "Solr Admin"
-    },
-    "9200": {
-      "label": "OpenSearch"
-    },
-    "5601": {
-      "label": "OpenSearch Dashboards"
-    },
-    "8090": {
-      "label": "Weaviate"
-    },
-    "8080": {
-      "label": "Vespa"
     },
     "7077": {
       "label": "Spark Master"
