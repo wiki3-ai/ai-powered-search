@@ -6,9 +6,12 @@ ENV NB_UID=1000
 ENV NB_GID=100
 
 # Install gcc, c++, and related dependencies needed for pip to build some python dependencies
-RUN sudo apt-get -y update && \
-    apt-get install -y --reinstall build-essential gcc cargo && \
-    rm -rf /var/lib/apt/lists/ 
+RUN rm -rf /var/lib/apt/lists/* && \
+    sed -i 's|http://archive.ubuntu.com|https://archive.ubuntu.com|g; s|http://security.ubuntu.com|https://security.ubuntu.com|g' /etc/apt/sources.list && \
+    apt-get update --yes -o Acquire::Retries=3 && \
+    apt-get install --yes --no-install-recommends build-essential gcc cargo && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install Spark-Solr
 ENV SPARK_SOLR_VERSION=4.0.2
